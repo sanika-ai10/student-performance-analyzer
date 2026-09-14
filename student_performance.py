@@ -8,12 +8,23 @@ number_of_subjects = int(input("How many subjects? "))
 
 # Create an empty dictionary
 marks = {}
+failed_subject = False
 
 # Get subject names and marks
 for i in range(number_of_subjects):
     subject = input(f"Enter subject {i + 1}: ")
-    mark = int(input(f"Enter marks for {subject}: "))
+    while True:
+        try:
+            mark = int(input(f"Enter marks for {subject}: "))
+        except ValueError:
+            print("Please enter a valid number.")
+            continue
+        if 0 <= mark <= 100:
+             break
 
+        print("Please enter a mark between 0 and 100.")
+    if mark < 40:
+        failed_subject = True
     marks[subject] = mark
 
 # Calculate total and average
@@ -45,6 +56,10 @@ print("Student:", name)
 print("Total Marks:", total)
 print("Average:", round(average, 2))
 print("Grade:", grade)
+if failed_subject:
+    print("Overall Result: FAIL")
+else:
+    print("Overall Result: PASS")
 
 print("\nHighest:", highest, "-", marks[highest])
 print("Lowest:", lowest, "-", marks[lowest])
