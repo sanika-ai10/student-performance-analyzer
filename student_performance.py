@@ -4,7 +4,17 @@
 name = input("Enter the student's name: ")
 
 # Get number of subjects
-number_of_subjects = int(input("How many subjects? "))
+while True:
+    try:
+        number_of_subjects = int(input("How many subjects? "))
+
+        if number_of_subjects > 0:
+            break
+
+        print("Please enter at least 1 subject.")
+
+    except ValueError:
+        print("Please enter a valid whole number.")
 
 # Create an empty dictionary
 marks = {}
